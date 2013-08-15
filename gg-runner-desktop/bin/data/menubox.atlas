@@ -1,0 +1,11 @@
+menubox.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+menu
+  rotate: false
+  xy: 0, 0
+  size: 673, 433
+  orig: 673, 433
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,11 @@
+backdrop.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+loading
+  rotate: false
+  xy: 0, 0
+  size: 960, 720
+  orig: 960, 720
+  offset: 0, 0
+  index: -1
