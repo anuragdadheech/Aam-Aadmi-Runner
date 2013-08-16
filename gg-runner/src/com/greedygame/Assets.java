@@ -1,5 +1,6 @@
 package com.greedygame;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
@@ -7,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
 
 public class Assets {
@@ -20,18 +22,22 @@ public class Assets {
 	public static TextureRegion BACK_DROP;
 	
 	public static Texture Debug;
-	public static AtlasRegion RETRYBOX, MENUBOX, SUPPORTBOX;
 	public static Texture  Coin;	
 	public static BitmapFont Font;
 	public static Sound Tick, BACKGROUND;
 	
 	private static AssetManager manager;
 	
+	private static TextureAtlas SkinAtlas;
+	public static Skin SKIN;
+	
+	public static TextureRegion IconPlay, IconSupport, IconInstruction, IconVote, IconDonate, IconScore, IconShare, IconRetry;
+	
 	public static void load(AssetManager _manager) {
 		manager = _manager;	
-		manager.load("data/retrybox.atlas", TextureAtlas.class);
-		manager.load("data/menubox.atlas", TextureAtlas.class);
-		manager.load("data/supportbox.atlas", TextureAtlas.class);
+
+		manager.load("skins/uiskin.atlas", TextureAtlas.class);
+		manager.load("skins/icons.atlas", TextureAtlas.class);
 		manager.load("data/backdrop.atlas", TextureAtlas.class);
 		manager.load("data/instruction.atlas", TextureAtlas.class);	
         manager.load("data/doodle.atlas", TextureAtlas.class);
@@ -48,14 +54,19 @@ public class Assets {
 
 	}
 	public static void init() {
-		TextureAtlas _atlasBox =  manager.get("data/retrybox.atlas", TextureAtlas.class); 
-		RETRYBOX = _atlasBox.findRegion("restart");
+		SkinAtlas =  manager.get("skins/uiskin.atlas", TextureAtlas.class);
 		
-		TextureAtlas _menuBox =  manager.get("data/menubox.atlas", TextureAtlas.class); 
-		MENUBOX = _menuBox.findRegion("menu");
+		SKIN = new Skin(Gdx.files.internal("skins/uiskin.json"), SkinAtlas);
 		
-		TextureAtlas _supportBox =  manager.get("data/supportbox.atlas", TextureAtlas.class); 
-		SUPPORTBOX = _supportBox.findRegion("support");
+		TextureAtlas _atlasIcon = manager.get("skins/icons.atlas", TextureAtlas.class);
+		IconPlay = _atlasIcon.findRegion("play");
+		IconSupport = _atlasIcon.findRegion("support"); 
+		IconInstruction = _atlasIcon.findRegion("instruction"); 
+		IconVote = _atlasIcon.findRegion("vote"); 
+		IconDonate = _atlasIcon.findRegion("donate");
+		IconScore = _atlasIcon.findRegion("score");
+		IconShare = _atlasIcon.findRegion("share");
+		IconRetry = _atlasIcon.findRegion("retry");
 		
 		TextureAtlas _atlasMenu1 = manager.get("data/backdrop.atlas", TextureAtlas.class);
 		BACK_DROP = _atlasMenu1.findRegion("loading");
@@ -96,9 +107,8 @@ public class Assets {
 	}
 
 	public static void unload(){	
-		manager.unload("data/retrybox.atlas");
-		manager.unload("data/menubox.atlas");
-		manager.unload("data/supportbox.atlas");
+		SkinAtlas.dispose();
+		manager.unload("skins/icons.atlas");
 		manager.unload("data/backdrop.atlas");		
 		manager.unload("data/instruction.atlas");	
         manager.unload("data/doodle.atlas");

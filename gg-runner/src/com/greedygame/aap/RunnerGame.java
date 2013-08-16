@@ -14,6 +14,10 @@ public class RunnerGame extends Game {
     
     public static boolean DEBUG = false;
     
+    private enum Stat {
+        PLAY, PAUSE, OVER, LOADING
+    }
+    Stat gameState;
     	
  	public RunnerGame() {
 
@@ -29,7 +33,6 @@ public class RunnerGame extends Game {
 	@Override
 	public void create() {
 		setScreen(new LoadingScreen(this));
-
 	}
 
 	@Override

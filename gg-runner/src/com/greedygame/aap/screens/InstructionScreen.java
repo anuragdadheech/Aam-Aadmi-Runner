@@ -1,9 +1,7 @@
 package com.greedygame.aap.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.input.GestureDetector.GestureListener;
 import com.badlogic.gdx.math.Vector2;
@@ -11,8 +9,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.greedygame.AbstractScreen;
 import com.greedygame.Assets;
-import com.greedygame.DialogBox.DialogBox;
-import com.greedygame.DialogBox.DialogBoxListener;
 import com.greedygame.aap.RunnerGame;
 
 public class InstructionScreen extends AbstractScreen implements GestureListener {

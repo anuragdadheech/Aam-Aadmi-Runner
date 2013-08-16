@@ -7,18 +7,17 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.greedygame.AbstractScreen;
 import com.greedygame.Assets;
-import com.greedygame.DialogBox.DialogBox;
-import com.greedygame.DialogBox.DialogBoxListener;
 import com.greedygame.aap.RunnerGame;
+import com.greedygame.app.dialog.MainDialog;
+import com.greedygame.app.dialog.SupportDialog;
+import com.greedygame.app.dialog.WindowDialogListener;
 
-public class MenuScreen extends AbstractScreen implements DialogBoxListener {
+public class MenuScreen extends AbstractScreen implements WindowDialogListener {
 	private Stage stage;
 	private Image screenBg;
 	
-	private DialogBox menuDialog, supportDialog;
-	
-
-	
+	private MainDialog menuWindow;
+	private SupportDialog supportWindow;
 	public MenuScreen(RunnerGame myGame){
 		super(myGame);		
         Assets.init();
@@ -28,13 +27,18 @@ public class MenuScreen extends AbstractScreen implements DialogBoxListener {
     public void show() {    	
         stage = new Stage();
         screenBg = new Image(Assets.BACK_DROP);          
-		menuDialog =  new DialogBox(this, Assets.MENUBOX, "Main Menu"); 
-		supportDialog = new DialogBox(this, Assets.SUPPORTBOX, "Support Menu"); 
+		/*menuDialog =  new DialogBox(this, Assets.MENUBOX, "Main Menu"); 
+		supportDialog = new DialogBox(this, Assets.SUPPORTBOX, "Support Menu"); */
         stage.addActor(screenBg);
-        stage.addActor(menuDialog); 
-        stage.addActor(supportDialog); 
-        menuDialog.show();       
-        Gdx.input.setCatchBackKey(true);        
+        //stage.addActor(menuDialog); 
+        //stage.addActor(supportDialog); 
+        
+        menuWindow = new MainDialog(this, stage);
+        supportWindow = new SupportDialog(this, stage);
+        Gdx.input.setCatchBackKey(true);  
+
+
+        menuWindow.show();
 
     }
 
@@ -46,9 +50,12 @@ public class MenuScreen extends AbstractScreen implements DialogBoxListener {
 		// Set our screen to always be 960 x XXX in size
 		height = (int) (RunnerGame.VIRTUAL_WIDTH * height/width);
 		width = (int) RunnerGame.VIRTUAL_WIDTH;
-		menuDialog.centerAlign(width, height);
-		supportDialog.centerAlign(width, height);
+		//menuDialog.centerAlign(width, height);
+		//supportDialog.centerAlign(width, height);
         stage.setViewport(width , height, true);
+        //dialogTable.setSize(width, height);
+        menuWindow.setPosition((width-menuWindow.getWidth())/2, (height-menuWindow.getHeight())/2);
+        supportWindow.setPosition((width-menuWindow.getWidth())/2, (height-menuWindow.getHeight())/2);
     }
 
     boolean keyDown = false;
@@ -61,22 +68,20 @@ public class MenuScreen extends AbstractScreen implements DialogBoxListener {
         stage.act();
         stage.draw();
         
+        
         if( (Gdx.input.isKeyPressed(Keys.ESCAPE) || Gdx.input.isKeyPressed(Keys.BACK))){
         	if(keyDown == false){
 	        	keyDown = true;
-	        	if(supportDialog.isVisible()){
-	        		System.out.print("support");
-	               	supportDialog.hide();
-	               	menuDialog.show();
-	        	}else if(menuDialog.isVisible()){
-	        		System.out.print("menu");
+	        	if(supportWindow.isVisible()){
+	               	supportWindow.hide();
+	               	menuWindow.show();
+	        	}else if(menuWindow.isVisible()){
 	        		 Gdx.app.exit();
 	        	}
         	}
         }else{
         	keyDown = false;
         }
-        
     }
 
     @Override
@@ -85,32 +90,28 @@ public class MenuScreen extends AbstractScreen implements DialogBoxListener {
     }
 
 	@Override
-	public void onButtonClicked(int id) {
-		if(menuDialog.isVisible()){
-			if(id == 0){
-				//play
-				game.setScreen(new GameScreen(game)); 
-			}else if(id==1){
-				//support
-				menuDialog.hide();
-				supportDialog.show();				
+	public void onButtonClicked(String name) {
+		if(name == "play"){
+			//play
+			game.setScreen(new GameScreen(game)); 
+		}else if(name == "support"){
+			//support
+			menuWindow.hide();
+			supportWindow.show();				
 
-			}else if(id==2){
-				//instructions
-				game.setScreen(new InstructionScreen(game)); 
-			}
-		}else if(supportDialog.isVisible()){
-			if(id == 0){
-				//donate
-				Gdx.net.openURI("https://donate.aamaadmiparty.org");
-			}else if(id==1){
-				//vote
-				Gdx.net.openURI("http://greedygame.com/aaprunner");
-			}else if(id==2){
-				//share
-				Gdx.net.openURI("http://m.facebook.com/sharer.php?u=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.greedygame.runner");
-			}
-		}
+		}else if(name == "instruction"){
+			//instructions
+			game.setScreen(new InstructionScreen(game)); 
+		}else if(name == "donate"){
+			//donate
+			Gdx.net.openURI("https://donate.aamaadmiparty.org");
+		}else if(name == "vote"){
+			//vote
+			Gdx.net.openURI("http://greedygame.com/aaprunner");
+		}else if(name == "share"){
+			//share
+			Gdx.net.openURI("http://m.facebook.com/sharer.php?u=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.greedygame.runner");
+		}		
 	}
 
 	@Override
@@ -124,4 +125,5 @@ public class MenuScreen extends AbstractScreen implements DialogBoxListener {
 		// TODO Auto-generated method stub
 		
 	}
+
 }

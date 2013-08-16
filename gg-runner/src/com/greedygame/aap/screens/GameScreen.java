@@ -9,15 +9,19 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.greedygame.AbstractScreen;
 import com.greedygame.Assets;
-import com.greedygame.DialogBox.DialogBox;
-import com.greedygame.DialogBox.DialogBoxListener;
 import com.greedygame.aap.RunnerGame;
 import com.greedygame.aap.RunnerTable;
+import com.greedygame.app.dialog.RetryDialog;
+import com.greedygame.app.dialog.SupportDialog;
+import com.greedygame.app.dialog.WindowDialogListener;
 
-public class GameScreen extends AbstractScreen implements GestureListener, DialogBoxListener{
+public class GameScreen extends AbstractScreen implements GestureListener, WindowDialogListener{
 	private Stage stage;
 	private RunnerTable runnerTable;
-	private DialogBox retryDialog,supportDialog;
+
+	
+	private RetryDialog retryWindow;
+	private SupportDialog supportWindow;
 	
 	public float SCORE = 0;
 	
@@ -33,18 +37,17 @@ public class GameScreen extends AbstractScreen implements GestureListener, Dialo
 		stage = new Stage(RunnerGame.VIRTUAL_WIDTH, RunnerGame.VIRTUAL_HEIGHT,true);
 		
 		runnerTable = new RunnerTable(this, RunnerGame.VIRTUAL_WIDTH, RunnerGame.VIRTUAL_HEIGHT);
-		retryDialog =  new DialogBox(this, Assets.RETRYBOX, "Try Again");
-		supportDialog = new DialogBox(this, Assets.SUPPORTBOX, "Support Menu"); 
 
 		stage.addActor(runnerTable);
-		stage.addActor(retryDialog);
-		stage.addActor(supportDialog);
+		
+
+        supportWindow = new SupportDialog(this, stage);
+        retryWindow = new RetryDialog(this, stage);
 		 
-		Gdx.input.setInputProcessor(new GestureDetector(this));
-	      
-        Gdx.input.setCatchBackKey(true);
+		Gdx.input.setInputProcessor(new GestureDetector(this));	      
+        Gdx.input.setCatchBackKey(true);        
         
-        Assets.BACKGROUND.loop(0.4f);
+        Assets.BACKGROUND.loop(1f);
 
 	}
 
@@ -55,8 +58,8 @@ public class GameScreen extends AbstractScreen implements GestureListener, Dialo
 		height = (int) (RunnerGame.VIRTUAL_WIDTH * height/width);
 		width = (int) RunnerGame.VIRTUAL_WIDTH;
 		runnerTable.setSize(width, height);
-		retryDialog.centerAlign(width, height);
-		supportDialog.centerAlign(width, height);
+        retryWindow.setPosition((width-retryWindow.getWidth())/2, (height-retryWindow.getHeight())/2);
+        supportWindow.setPosition((width-supportWindow.getWidth())/2, (height-supportWindow.getHeight())/2);
 
         stage.setViewport(width , height, true);
 	}
@@ -74,13 +77,11 @@ public class GameScreen extends AbstractScreen implements GestureListener, Dialo
         if( (Gdx.input.isKeyPressed(Keys.ESCAPE) || Gdx.input.isKeyPressed(Keys.BACK))){
         	if(keyDown == false){
 	        	keyDown = true;
-	        	if(supportDialog.isVisible()){
-	               	supportDialog.hide();
-
-	    			Gdx.input.setInputProcessor(this.stage);	
-	               	retryDialog.show();
-	        	}else if(retryDialog.isVisible()){
-					game.setScreen(new MenuScreen(game));
+	        	if(supportWindow.isVisible()){
+	               	supportWindow.hide();
+	               	retryWindow.show();
+	        	}else if(retryWindow.isVisible()){
+	    			game.setScreen(new MenuScreen(game)); 
 	        	}
         	}
         }else{
@@ -92,8 +93,6 @@ public class GameScreen extends AbstractScreen implements GestureListener, Dialo
 	@Override 
     public void hide() {
     	Gdx.input.setInputProcessor(null);
-    	runnerTable.remove();
-    	retryDialog.remove();
     	stage.clear();
     	stage = null;    	
     }
@@ -120,9 +119,12 @@ public class GameScreen extends AbstractScreen implements GestureListener, Dialo
 	
 	
 	public void showRetry(){
-		if(!retryDialog.isVisible() || !supportDialog.isVisible()){
-			retryDialog.show();
-			Assets.BACKGROUND.stop();
+		if(!retryWindow.isVisible()){
+			retryWindow.show();
+		}
+		
+		if(supportWindow.isVisible()){
+			retryWindow.hide();
 		}
 	}
 	
@@ -140,34 +142,31 @@ public class GameScreen extends AbstractScreen implements GestureListener, Dialo
 	
 	
 	@Override
-	public void onButtonClicked(int id) {
-		if(retryDialog.isVisible()){
-			if(id==0){
+	public void onButtonClicked(String name) {
+			if(name == "retry"){
 				//play_again
-				retryDialog.hide();
+				retryWindow.hide();
 				Gdx.input.setInputProcessor(new GestureDetector(this));
 				runnerTable.restart();
-				Assets.BACKGROUND.play(0.4f);
-			}else if(id==1){
+				//Assets.BACKGROUND.loop(1f);
+			}else if(name == "support"){
 				//support
-				retryDialog.hide();
-				supportDialog.show();
-			}else if(id==2){
+				retryWindow.hide();
+				supportWindow.show();
+			}else if(name == "score"){
 				//leaderboard
 				//TODO: with google play service
-			}
-		}else if(supportDialog.isVisible()){
-			if(id == 0){
+			}else if(name == "donate"){
 				//donate
 				Gdx.net.openURI("https://donate.aamaadmiparty.org");
-			}else if(id==1){
+			}else if(name == "vote"){
 				//vote
 				Gdx.net.openURI("http://greedygame.com/aaprunner");
-			}else if(id==2){
+			}else if(name == "share"){
 				//share
 				Gdx.net.openURI("http://m.facebook.com/sharer.php?u=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.greedygame.runner");
 			}
-		}
+		
 	}
 
 
@@ -183,5 +182,6 @@ public class GameScreen extends AbstractScreen implements GestureListener, Dialo
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }

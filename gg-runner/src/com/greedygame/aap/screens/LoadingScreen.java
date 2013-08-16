@@ -25,21 +25,12 @@ public class LoadingScreen extends AbstractScreen {
         squareMesh = new Mesh(true, 4, 4, 
                 new VertexAttribute(Usage.Position, 3, "a_position"),
                 new VertexAttribute(Usage.ColorPacked, 4, "a_color"));
-
     }
     
-    public void drawBar(float width, float height){
-        squareMesh.setVertices(new float[] {
-                0, 0, 0, Color.toFloatBits(128, 0, 0, 255),
-                width, 0, 0, Color.toFloatBits(192, 0, 0, 255),
-                0, height, 0, Color.toFloatBits(192, 0, 0, 255),
-                width, height, 0, Color.toFloatBits(255, 0, 0, 255) });            
-        squareMesh.setIndices(new short[] { 0, 1, 2, 3});
-        squareMesh.render(GL10.GL_TRIANGLE_STRIP, 0, 4);
-    }
-
     @Override
-    public void show() {    	
+    public void show() {    
+    	//RunnerGame.LOADING
+    	
         // Tell the manager to load assets for the loading screen    
         game.manager.load("data/loading.atlas", TextureAtlas.class);
         
@@ -58,8 +49,7 @@ public class LoadingScreen extends AbstractScreen {
         stage.addActor(screenBg);
 
         // Add everything to be loaded, for instance:
-        Assets.load(game.manager);
-        
+        Assets.load(game.manager);        
     }
 
     @Override
@@ -88,5 +78,15 @@ public class LoadingScreen extends AbstractScreen {
     public void hide() {
         // Dispose the loading assets as we no longer need them
         game.manager.unload("data/loading.atlas");
+    }
+    
+    public void drawBar(float width, float height){
+        squareMesh.setVertices(new float[] {
+                0, 0, 0, Color.toFloatBits(128, 0, 0, 255),
+                width, 0, 0, Color.toFloatBits(192, 0, 0, 255),
+                0, height, 0, Color.toFloatBits(192, 0, 0, 255),
+                width, height, 0, Color.toFloatBits(255, 0, 0, 255) });            
+        squareMesh.setIndices(new short[] { 0, 1, 2, 3});
+        squareMesh.render(GL10.GL_TRIANGLE_STRIP, 0, 4);
     }
 }
