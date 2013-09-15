@@ -1,11 +1,25 @@
-loading1.png
+loading.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Linear,Linear
 repeat: none
-loading
+aap_quote
   rotate: false
-  xy: 0, 0
-  size: 960, 720
-  orig: 960, 720
+  xy: 2, 136
+  size: 820, 246
+  orig: 820, 246
+  offset: 0, 0
+  index: -1
+aap_logo
+  rotate: false
+  xy: 2, 2
+  size: 273, 132
+  orig: 273, 132
+  offset: 0, 0
+  index: -1
+gg_logo
+  rotate: false
+  xy: 2, 384
+  size: 212, 73
+  orig: 212, 73
   offset: 0, 0
   index: -1

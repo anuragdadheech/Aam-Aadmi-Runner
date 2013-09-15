@@ -199,8 +199,8 @@ white
 aam-window
   rotate: false
   xy: 0, 128
-  size: 66, 57
-  split: 16, 16, 16, 16
-  orig: 66, 57
+  size: 93, 85
+  split: 35, 35, 35, 35
+  orig: 93, 85
   offset: 0, 0
   index: -1

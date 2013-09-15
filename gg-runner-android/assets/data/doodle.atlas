@@ -5,63 +5,63 @@ filter: Nearest,Nearest
 repeat: none
 run
   rotate: false
-  xy: 2, 2
+  xy: 0, 0
   size: 75, 113
   orig: 75, 113
   offset: 0, 0
   index: 9
 run
   rotate: false
-  xy: 2, 117
+  xy: 0, 117
   size: 75, 113
   orig: 75, 113
   offset: 0, 0
   index: 8
 run
   rotate: false
-  xy: 2, 232
+  xy: 0, 230
   size: 75, 113
   orig: 75, 113
   offset: 0, 0
   index: 7
 run
   rotate: false
-  xy: 2, 347
+  xy: 0, 341
   size: 75, 113
   orig: 75, 113
   offset: 0, 0
   index: 6
 run
   rotate: false
-  xy: 79, 2
+  xy: 79, 0
   size: 75, 113
   orig: 75, 113
   offset: 0, 0
   index: 5
 run
   rotate: false
-  xy: 156, 2
+  xy: 156, 0
   size: 75, 113
   orig: 75, 113
   offset: 0, 0
   index: 4
 run
   rotate: false
-  xy: 233, 2
+  xy: 233, 0
   size: 75, 113
   orig: 75, 113
   offset: 0, 0
   index: 3
 run
   rotate: false
-  xy: 310, 2
-  size: 75, 113
-  orig: 75, 113
+  xy: 310, 0
+  size: 75, 115
+  orig: 75, 115
   offset: 0, 0
   index: 2
 run
   rotate: false
-  xy: 387, 2
+  xy: 387, 0
   size: 75, 113
   orig: 75, 113
   offset: 0, 0
@@ -69,20 +69,20 @@ run
 run
   rotate: false
   xy: 79, 117
-  size: 75, 113
-  orig: 75, 113
+  size: 75, 110
+  orig: 75, 110
   offset: 0, 0
   index: 10
 run
   rotate: false
-  xy: 79, 232
+  xy: 75, 227
   size: 75, 113
   orig: 75, 113
   offset: 0, 0
   index: 1
 run
   rotate: false
-  xy: 79, 347
+  xy: 75, 345
   size: 75, 113
   orig: 75, 113
   offset: 0, 0
