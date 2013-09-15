@@ -1,0 +1,11 @@
+levelover.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+congo
+  rotate: false
+  xy: 0, 0
+  size: 350, 225
+  orig: 350, 225
+  offset: 0, 0
+  index: -1

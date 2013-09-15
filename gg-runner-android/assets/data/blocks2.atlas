@@ -1,0 +1,60 @@
+blocks2.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bus
+  rotate: false
+  xy: 2, 2
+  size: 558, 221
+  orig: 558, 221
+  offset: 0, 0
+  index: 1
+leader
+  rotate: false
+  xy: 630, 529
+  size: 251, 183
+  orig: 251, 183
+  offset: 0, 0
+  index: 0
+fly
+  rotate: false
+  xy: 2, 448
+  size: 373, 525
+  orig: 373, 525
+  offset: 0, 0
+  index: 0
+fly
+  rotate: false
+  xy: 562, 2
+  size: 373, 525
+  orig: 373, 525
+  offset: 0, 0
+  index: 1
+pillar
+  rotate: false
+  xy: 377, 714
+  size: 208, 519
+  orig: 208, 519
+  offset: 0, 0
+  index: 1
+leader
+  rotate: false
+  xy: 377, 529
+  size: 251, 183
+  orig: 251, 183
+  offset: 0, 0
+  index: 1
+pillar
+  rotate: false
+  xy: 2, 975
+  size: 208, 519
+  orig: 208, 519
+  offset: 0, 0
+  index: 0
+bus
+  rotate: false
+  xy: 2, 225
+  size: 558, 221
+  orig: 558, 221
+  offset: 0, 0
+  index: 0

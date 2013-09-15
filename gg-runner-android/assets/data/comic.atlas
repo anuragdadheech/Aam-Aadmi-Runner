@@ -1,0 +1,32 @@
+comic.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+comic
+  rotate: false
+  xy: 2, 1363
+  size: 854, 523
+  orig: 854, 523
+  offset: 0, 0
+  index: 2
+comic
+  rotate: false
+  xy: 2, 2
+  size: 960, 720
+  orig: 960, 720
+  offset: 0, 0
+  index: 3
+comic
+  rotate: false
+  xy: 2, 895
+  size: 895, 466
+  orig: 895, 466
+  offset: 0, 0
+  index: 1
+indicator
+  rotate: false
+  xy: 2, 724
+  size: 960, 169
+  orig: 960, 169
+  offset: 0, 0
+  index: -1

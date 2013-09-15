@@ -8,6 +8,5 @@
 	<classpathentry kind="lib" path="libs/gdx-backend-lwjgl.jar"/>
 	<classpathentry kind="lib" path="libs/gdx-natives.jar"/>
 	<classpathentry kind="lib" path="libs/gdx-tools.jar"/>
-	<classpathentry kind="lib" path="/gg-runner/libs/greedygame.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,0 +1,53 @@
+crowd.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+crowd
+  rotate: false
+  xy: 0, 0
+  size: 0, 128
+  orig: 0, 128
+  offset: 0, 0
+  index: 0
+crowd
+  rotate: false
+  xy: 0, 0
+  size: 86, 128
+  orig: 86, 128
+  offset: 0, 0
+  index: 1
+crowd
+  rotate: false
+  xy: 0, 0
+  size: 245, 128
+  orig: 245, 128
+  offset: 0, 0
+  index: 2
+crowd
+  rotate: false
+  xy: 0, 0
+  size: 367, 128
+  orig: 367, 128
+  offset: 0, 0
+  index: 3
+crowd
+  rotate: false
+  xy: 0, 0
+  size: 526, 128
+  orig: 526, 128
+  offset: 0, 0
+  index: 4
+crowd
+  rotate: false
+  xy: 0, 0
+  size: 720, 128
+  orig: 720, 128
+  offset: 0, 0
+  index: 5
+crowd
+  rotate: false
+  xy: 0, 0
+  size: 960, 128
+  orig: 960, 128
+  offset: 0, 0
+  index: 6

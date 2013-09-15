@@ -1,0 +1,32 @@
+blocks1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+police
+  rotate: false
+  xy: 0, 600
+  size: 240, 160
+  orig: 240, 160
+  offset: 0, 0
+  index: -1
+redman
+  rotate: false
+  xy: 365, 2
+  size: 125, 209
+  orig: 125, 209
+  offset: 0, 0
+  index: -1
+no_entry
+  rotate: false
+  xy: 2, 2
+  size: 202, 317
+  orig: 202, 317
+  offset: 0, 0
+  index: -1
+watergun
+  rotate: false
+  xy: 0, 280
+  size: 450, 320
+  orig: 450, 320
+  offset: 0, 0
+  index: -1
