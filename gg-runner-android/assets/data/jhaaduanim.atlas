@@ -1,39 +1,53 @@
 jhaaduanim.png
 format: RGBA8888
-filter: Nearest,Nearest
+filter: Linear,Linear
 repeat: none
-sweep
+jhaadu
   rotate: false
-  xy: 0, 0
-  size: 176, 119
-  orig: 176, 119
-  offset: 0, 0
-  index: 0
-sweep
-  rotate: false
-  xy: 177, 0
-  size: 176, 119
-  orig: 176, 119
+  xy: 2, 2
+  size: 475, 350
+  orig: 475, 350
   offset: 0, 0
   index: 1
-sweep
+jhaadu
   rotate: false
-  xy: 354, 0
-  size: 176, 119
-  orig: 176, 119
+  xy: 479, 706
+  size: 475, 350
+  orig: 475, 350
+  offset: 0, 0
+  index: 6
+jhaadu
+  rotate: false
+  xy: 2, 1058
+  size: 475, 350
+  orig: 475, 350
+  offset: 0, 0
+  index: 7
+jhaadu
+  rotate: false
+  xy: 479, 2
+  size: 475, 350
+  orig: 475, 350
   offset: 0, 0
   index: 2
-sweep
+jhaadu
   rotate: false
-  xy: 531, 0
-  size: 176, 119
-  orig: 176, 119
+  xy: 2, 354
+  size: 475, 350
+  orig: 475, 350
   offset: 0, 0
   index: 3
-sweep
+jhaadu
   rotate: false
-  xy: 708, 0
-  size: 176, 119
-  orig: 176, 119
+  xy: 479, 354
+  size: 475, 350
+  orig: 475, 350
   offset: 0, 0
   index: 4
+jhaadu
+  rotate: false
+  xy: 2, 706
+  size: 475, 350
+  orig: 475, 350
+  offset: 0, 0
+  index: 5

@@ -20,7 +20,7 @@ import org.apache.http.util.ByteArrayBuffer;
 
 import android.os.Handler;
 
-import com.greedygame.scoreoid.ScoreoidConstants;
+import com.greedygame.ScoreoidConstants;
 
 public class ScoreoidWrapper {
 	
@@ -32,6 +32,8 @@ public class ScoreoidWrapper {
 	
 	HttpPost httpPost = null;
 	HttpResponse response = null;
+	
+	private String SCOREOID_APIKEY = "<Score oid key here>";
 	
 	public ScoreoidWrapper(){
 		HttpParams myParams = new BasicHttpParams();
@@ -94,7 +96,7 @@ public class ScoreoidWrapper {
 		
 //		currentService=ScoreoidAPIType.GETBESTSCORES;
 		ArrayList<NameValuePair> param=new ArrayList<NameValuePair>();
-		param.add(new BasicNameValuePair("api_key", ScoreoidConstants.SCOREOID_APIKEY));
+		param.add(new BasicNameValuePair("api_key", SCOREOID_APIKEY));
 		param.add(new BasicNameValuePair("game_id", ScoreoidConstants.SCOREOID_GAME_ID));
 		param.add(new BasicNameValuePair("response", ScoreoidConstants.SCOREOID_RESPONSETYPE));
 		param.add(new BasicNameValuePair("order_by", ScoreoidConstants.SCOREOID_SCORE_ORDERBY));
@@ -109,7 +111,7 @@ public class ScoreoidWrapper {
 		System.out.println("ScoreoidWrapper "+function +":"+username+","+first+" "+last);
 		
 		ArrayList<NameValuePair> param=new ArrayList<NameValuePair>();
-		param.add(new BasicNameValuePair("api_key", ScoreoidConstants.SCOREOID_APIKEY));
+		param.add(new BasicNameValuePair("api_key", SCOREOID_APIKEY));
 		param.add(new BasicNameValuePair("game_id", ScoreoidConstants.SCOREOID_GAME_ID));
 		param.add(new BasicNameValuePair("response", ScoreoidConstants.SCOREOID_RESPONSETYPE));
 		param.add(new BasicNameValuePair("username", username));
@@ -123,7 +125,7 @@ public class ScoreoidWrapper {
 		String function=ScoreoidConstants.GETPLAYER;
 		System.out.println("ScoreoidWrapper "+function +":"+username);
 		ArrayList<NameValuePair> param=new ArrayList<NameValuePair>();
-		param.add(new BasicNameValuePair("api_key", ScoreoidConstants.SCOREOID_APIKEY));
+		param.add(new BasicNameValuePair("api_key", SCOREOID_APIKEY));
 		param.add(new BasicNameValuePair("game_id", ScoreoidConstants.SCOREOID_GAME_ID));
 		param.add(new BasicNameValuePair("response", ScoreoidConstants.SCOREOID_RESPONSETYPE));
 		param.add(new BasicNameValuePair("username", username));		
@@ -134,7 +136,7 @@ public class ScoreoidWrapper {
 		String function=ScoreoidConstants.GETPLAYERRANK;
 		System.out.println("ScoreoidWrapper "+function +":"+username);
 		ArrayList<NameValuePair> param=new ArrayList<NameValuePair>();
-		param.add(new BasicNameValuePair("api_key", ScoreoidConstants.SCOREOID_APIKEY));
+		param.add(new BasicNameValuePair("api_key", SCOREOID_APIKEY));
 		param.add(new BasicNameValuePair("game_id", ScoreoidConstants.SCOREOID_GAME_ID));
 		param.add(new BasicNameValuePair("response", ScoreoidConstants.SCOREOID_RESPONSETYPE));
 		param.add(new BasicNameValuePair("username", username));		
@@ -144,7 +146,7 @@ public class ScoreoidWrapper {
 	public String CreateScore(String username, int score) {
 		String function=ScoreoidConstants.CREATESCORE;
 		ArrayList<NameValuePair> param=new ArrayList<NameValuePair>();
-		param.add(new BasicNameValuePair("api_key", ScoreoidConstants.SCOREOID_APIKEY));
+		param.add(new BasicNameValuePair("api_key", SCOREOID_APIKEY));
 		param.add(new BasicNameValuePair("game_id", ScoreoidConstants.SCOREOID_GAME_ID));
 		param.add(new BasicNameValuePair("response", ScoreoidConstants.SCOREOID_RESPONSETYPE));
 		param.add(new BasicNameValuePair("username", username));

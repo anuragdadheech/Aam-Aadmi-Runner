@@ -3,7 +3,7 @@ package com.greedygame.apprunner;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
-import com.greedygame.scoreoid.ScoreoidConstants;
+import com.greedygame.ScoreoidConstants;
 
 
 public class ScoreoidWebService	extends AsyncTask<Bundle, String, Bundle> {

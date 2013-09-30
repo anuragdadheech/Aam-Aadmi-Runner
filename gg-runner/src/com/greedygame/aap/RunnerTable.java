@@ -74,7 +74,8 @@ public class RunnerTable extends Table {
 		road = new InfiniteScrollBg(this, roadTexture.getRegionWidth(),0, roadTexture);
 		this.addActor(sky);	
 		this.addActor(road);		
-		platform = new Platform(this);			
+		platform = new Platform(this);		
+		platform.setName("road");
 		manPosition = new Vector2(200, 130);		
 		man = new CommonMan(this, manPosition);
 		this.addActor(man);		

@@ -1,9 +1,9 @@
 package com.greedygame.aap.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.input.GestureDetector.GestureListener;
@@ -11,7 +11,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.greedygame.AbstractScreen;
-import com.greedygame.Constant;
 import com.greedygame.aap.RunnerGame;
 import com.greedygame.assets.AssetsComic1;
 import com.greedygame.assets.AssetsComic2;
@@ -59,7 +58,7 @@ public class InstructionScreen extends AbstractScreen implements GestureListener
         meter2.setVisible(false);
         
         init();
-
+        game.analyticsEngine.sendView("InstructionScreen");
     }
 
 	@Override
@@ -68,7 +67,6 @@ public class InstructionScreen extends AbstractScreen implements GestureListener
 		im.addProcessor(new GestureDetector(this));
 		Gdx.input.setInputProcessor(im);	
         Gdx.input.setCatchBackKey(true);
-        game.analyticsEngine.sendView("InstructionScreen");
         number = 0;		
 	}
         
@@ -126,7 +124,7 @@ public class InstructionScreen extends AbstractScreen implements GestureListener
             meter2.setVisible(true);
         }
         else if(number>5){
-        	game.setScreen(new LoadingScreen(game, Constant.SCREEN_MENU));        	
+        	game.setScreen(new MenuScreen(game));
         }        
     }
 

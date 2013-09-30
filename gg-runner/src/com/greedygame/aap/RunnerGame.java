@@ -3,6 +3,7 @@ package com.greedygame.aap;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.greedygame.AnalyticsEngine;
+import com.greedygame.WebViewInterface;
 import com.greedygame.Constant;
 import com.greedygame.Settings;
 import com.greedygame.aap.screens.LoadingScreen;
@@ -16,6 +17,7 @@ public class RunnerGame extends Game {
     public AssetManager manager = new AssetManager();
     public AnalyticsEngine analyticsEngine;
     public static FacebookInterface facebook;
+    public static WebViewInterface webView;
     
     public static boolean DEBUG = true;  
     
@@ -25,11 +27,12 @@ public class RunnerGame extends Game {
 	public static Settings setting;
 	public static boolean isConnected;
     
- 	public RunnerGame(AnalyticsEngine analyticsEngine, FacebookInterface _fb, ScoreInterface _scoreoid) {
+ 	public RunnerGame(AnalyticsEngine analyticsEngine, FacebookInterface _fb, ScoreInterface _scoreoid, WebViewInterface _webview) {
 		this.analyticsEngine = analyticsEngine;
 		this.analyticsEngine.initialize();		
 		facebook = _fb;
 		scoreoid = _scoreoid;
+		webView = _webview;
 		score = new Record();
 		setting = new Settings();
 		isConnected = false;

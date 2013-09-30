@@ -40,4 +40,10 @@ public class FbInterfaceHtml implements FacebookInterface{
 		
 	}
 
+	@Override
+	public void public_action(FB_Action action) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

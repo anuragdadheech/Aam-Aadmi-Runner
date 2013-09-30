@@ -12,6 +12,7 @@ import com.greedygame.assets.AssetsCommon;
 import com.greedygame.dialog.MainDialog;
 import com.greedygame.dialog.SupportDialog;
 import com.greedygame.dialog.WindowDialogListener;
+import com.greedygame.facebook.FacebookInterface;
 
 public class MenuScreen extends AbstractScreen implements WindowDialogListener {
    
@@ -36,9 +37,9 @@ public class MenuScreen extends AbstractScreen implements WindowDialogListener {
         supportWindow.setPosition((stage.getWidth()-menuWindow.getWidth())/2, (stage.getHeight()-menuWindow.getHeight())/2);
         Gdx.input.setCatchBackKey(true);
         menuWindow.show();
-        game.analyticsEngine.sendView("loadingScreen");
-        
         init();
+        
+        game.analyticsEngine.sendView("MenuScreen");
     }
 
     @Override
@@ -78,39 +79,45 @@ public class MenuScreen extends AbstractScreen implements WindowDialogListener {
 
     @Override
     public void hide() {
-        // Dispose the loading AssetsCommon as we no longer need them
+        //Do not dispose MenuScreen
     }
 
 	@Override
 	public void onButtonClicked(String name) {
+		Gdx.app.log("MenuScreen", "onButtonClicked "+name);
 		if(name == "play"){
 			//play
-			//game.setScreen(new LoadingScreen(game, 1)); 
 			game.setScreen(new SelectScreen(game)); 
 		}else if(name == "support"){
 			//support
 			menuWindow.hide();
-			supportWindow.show();				
-
+			supportWindow.show();	
+			RunnerGame.facebook.public_action(FacebookInterface.FB_Action.SUPPORT);
+			game.analyticsEngine.sendEvent("support", "mainmenu", "support", 0);
 		}else if(name == "instruction"){
 			//instructions
 			//game.setScreen(new InstructionScreen(game));
 			game.setScreen(new LoadingScreen(game, Constant.SCREEN_INSTRUCTION));
 		}else if(name == "donate"){
 			//donate
-			Gdx.net.openURI(Constant.LINK_AAP_DONATION);
+			RunnerGame.webView.donate();
+			game.analyticsEngine.sendEvent("donate", "mainmenu", "donate", 0);
 		}else if(name == "vote"){
 			//vote
-			Gdx.net.openURI(Constant.LINK_GG_ENGAGEMENT);
+			RunnerGame.webView.commitToVote();
+			game.analyticsEngine.sendEvent("vote", "mainmenu", "vote", 0);
 		}else if(name == "share"){
 			//share
 			//Gdx.net.openURI(Constant.LINK_FB_SHARE);
 			RunnerGame.facebook.inviteDialog();
+			game.analyticsEngine.sendEvent("invite", "mainmenu", "invite", 0);
 		}		
 	}
 
-
-
+	public void activity() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
 	public void pause() {

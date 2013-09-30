@@ -55,9 +55,10 @@ public class CommonMan extends AbstractActor {
 	private Fixture fixture;
 	public CommonMan(RunnerTable table, Vector2 position){
 		this.table = table;
-		runAnimation = new Animation(0.09f, AssetsCommon.MAN_RUN); 
-		rollAnimation = new Animation(0.09f, AssetsCommon.MAN_ROLL);
-		cleanAnimation = new Animation(0.075f, AssetsCommon.MAN_ATTACK);
+		runAnimation = new Animation(0.08f, AssetsCommon.MAN_RUN); 
+		rollAnimation = new Animation(0.08f, AssetsCommon.MAN_ROLL);
+		cleanAnimation = new Animation(0.07f, AssetsCommon.MAN_ATTACK);
+		rollAnimation.setPlayMode(Animation.NORMAL);
 		
 		
 		initialPosition = new Vector2(position.x/GameScreen.SCALE, position.y/GameScreen.SCALE);
@@ -70,8 +71,8 @@ public class CommonMan extends AbstractActor {
 		
 		bodyx = initialPosition.x;
 		bodyy = initialPosition.y;
-		bodyw = 75/(2*GameScreen.SCALE);
-		bodyh = 113/(2*GameScreen.SCALE);
+		bodyw = 50/(2*GameScreen.SCALE);
+		bodyh = 140/(2*GameScreen.SCALE);
 				
         BodyDef bodyDef =new BodyDef();   
         bodyDef.type = BodyType.DynamicBody;        
@@ -137,6 +138,7 @@ public class CommonMan extends AbstractActor {
 	public void duck(){
 		if(manStat != Stat.DUCK ){
 			manStat = Stat.DUCK;
+			stateTime = 0;
 			lowerBody.setLinearVelocity(0, -50);
 			lowerBody.setTransform(lowerBody.getPosition().x, lowerBody.getPosition().y - bodyw/2, (11.0f/7));
 			rollStarted = 0f;
@@ -146,7 +148,7 @@ public class CommonMan extends AbstractActor {
 	public void run(){
 		if(manStat != Stat.RUN){
 			manStat = Stat.RUN;
-			lowerBody.setTransform(lowerBody.getPosition().x, lowerBody.getPosition().y + bodyw/2, 22.0f/7);
+			lowerBody.setTransform(lowerBody.getPosition().x, lowerBody.getPosition().y + bodyw/2  + 33/GameScreen.SCALE, 22.0f/7);
 		}
 	}
 	
@@ -206,6 +208,7 @@ public class CommonMan extends AbstractActor {
 	public void startPower(){
 		super_time = 10f;
 		superPower = true;
+		stateTime = 0;
 		manStat = Stat.SUPER;
 		Gdx.input.vibrate(200);
 		
@@ -220,7 +223,7 @@ public class CommonMan extends AbstractActor {
 		if(manStat == Stat.PAUSE){
 			return;
 		}
-
+		
         stateTime += Gdx.graphics.getDeltaTime();        
         if(manStat != Stat.DIE){
         if(manStat == Stat.DUCK){
@@ -237,12 +240,11 @@ public class CommonMan extends AbstractActor {
 
 	    batch.setColor(getColor().r, getColor().g, getColor().b, getColor().a);	
 	    if(manStat == Stat.DUCK){
-	    	batch.draw(currentFrame, lowerBody.getPosition().x - bodyw , lowerBody.getPosition().y - bodyh + 20/GameScreen.SCALE, this.getWidth()/GameScreen.SCALE, this.getHeight()/GameScreen.SCALE); 
-        
-        }else if(this.hasPower() && hitTimer>0){
-        	batch.draw(currentFrame, lowerBody.getPosition().x - bodyw - 50/GameScreen.SCALE, lowerBody.getPosition().y - bodyh, this.getWidth()/GameScreen.SCALE, this.getHeight()/GameScreen.SCALE); 
+	    	batch.draw(currentFrame, lowerBody.getPosition().x - bodyw - 50/GameScreen.SCALE , lowerBody.getPosition().y - bodyh +10/GameScreen.SCALE, this.getWidth()/GameScreen.SCALE, this.getHeight()/GameScreen.SCALE); 
+	    }else if(this.hasPower() && hitTimer>0){
+        	batch.draw(currentFrame, lowerBody.getPosition().x - bodyw - 270/GameScreen.SCALE, lowerBody.getPosition().y - bodyh - 125/GameScreen.SCALE, this.getWidth()/GameScreen.SCALE, this.getHeight()/GameScreen.SCALE); 
         }else{
-        	batch.draw(currentFrame, lowerBody.getPosition().x - bodyw, lowerBody.getPosition().y - bodyh, this.getWidth()/GameScreen.SCALE, this.getHeight()/GameScreen.SCALE); 
+        	batch.draw(currentFrame, lowerBody.getPosition().x - bodyw - 50/GameScreen.SCALE, lowerBody.getPosition().y - bodyh, this.getWidth()/GameScreen.SCALE, this.getHeight()/GameScreen.SCALE); 
         }
         }
      }

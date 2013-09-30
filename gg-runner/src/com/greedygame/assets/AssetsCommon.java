@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
@@ -21,7 +20,6 @@ public class AssetsCommon {
 	public static TextureRegion IconLevel1, IconLevel2, IconLock;
 	//Man
 	public static Array<AtlasRegion> MAN_RUN, MAN_JUMP, MAN_ROLL, MAN_ATTACK;
-	public static Texture MAN_KILLED;
 	
 	public static TextureRegion BACK_DROP;
 	public static BitmapFont FONT;
@@ -41,11 +39,10 @@ public class AssetsCommon {
 		manager.load("skins/icons.atlas", TextureAtlas.class);
 		manager.load("data/level_select.atlas", TextureAtlas.class);
 		manager.load("data/hud.atlas", TextureAtlas.class);
-        manager.load("data/doodle.atlas", TextureAtlas.class);
-        manager.load("data/jhaaduanim.atlas", TextureAtlas.class);
-        manager.load("data/man_kill.png", Texture.class);
+        manager.load("data/arvind.atlas", TextureAtlas.class);
         manager.load("sound/runner.mp3", Music.class);
         manager.load("sound/tick.mp3", Sound.class);
+        manager.load("data/jhaaduanim.atlas", TextureAtlas.class);
 	}
 	
 	public static void init() {
@@ -85,16 +82,12 @@ public class AssetsCommon {
 		TextureAtlas _atlasMenu1 = manager.get("data/backdrop.atlas", TextureAtlas.class);
 		BACK_DROP = _atlasMenu1.findRegion("loading");
 		
-		TextureAtlas _atlasDodle = manager.get("data/doodle.atlas", TextureAtlas.class);
+		TextureAtlas _atlasDodle = manager.get("data/arvind.atlas", TextureAtlas.class);
 		MAN_RUN = _atlasDodle.findRegions("run");	
 		MAN_JUMP = _atlasDodle.findRegions("run");	
 		MAN_ROLL = _atlasDodle.findRegions("roll");
-		
 		TextureAtlas _atlasAttack = manager.get("data/jhaaduanim.atlas", TextureAtlas.class);
-		MAN_ATTACK = _atlasAttack.findRegions("sweep");
-		
-			
-		MAN_KILLED = manager.get("data/man_kill.png", Texture.class);
+		MAN_ATTACK = _atlasAttack.findRegions("jhaadu");		
 		
 
 		TICK_SOUND = manager.get("sound/tick.mp3", Sound.class);
@@ -105,9 +98,7 @@ public class AssetsCommon {
 		manager.unload("skins/uiskin.atlas");
 		manager.unload("skins/icons.atlas");
 		manager.unload("data/hud.atlas");
-        manager.unload("data/doodle.atlas");
-        manager.unload("data/jhaaduanim.atlas");
-        manager.unload("data/man_kill.png");
+        manager.unload("data/arvind.atlas");
 		manager.unload("data/instruction.atlas");	
         manager.unload("data/boomanim.atlas");
         manager.unload("sound/runner.mp3");

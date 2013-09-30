@@ -48,6 +48,8 @@ public class ComicScreen extends AbstractScreen implements GestureListener {
         instruction3.setVisible(false);
         meter.setVisible(false);
         init();
+
+        game.analyticsEngine.sendView("ComicScreen");
     }
     
 	@Override
