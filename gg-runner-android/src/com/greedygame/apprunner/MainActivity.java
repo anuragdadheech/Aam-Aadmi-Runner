@@ -62,24 +62,6 @@ public class MainActivity extends AndroidApplication implements WebViewInterface
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-     // Add code to print out the key hash
-      /*  try {
-            PackageInfo info = getPackageManager().getPackageInfo(
-                    "com.greedygame.apprunner", 
-                    PackageManager.GET_SIGNATURES);
-            for (Signature signature : info.signatures) {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-                }
-        } catch (NameNotFoundException e) {
-
-        } catch (NoSuchAlgorithmException e) {
-
-        }*/
-        
-        //scoreoidObject=new ScoreoidWrapper();
         analyticsEngine = new AnalyticsEngineAndroid(this);           
         AndroidApplicationConfiguration cfg = new AndroidApplicationConfiguration();
         cfg.useGL20 = false;
