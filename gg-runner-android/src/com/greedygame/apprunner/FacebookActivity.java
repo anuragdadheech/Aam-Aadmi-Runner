@@ -16,7 +16,9 @@
 
 package com.greedygame.apprunner;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -24,7 +26,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.facebook.FacebookAuthorizationException;
@@ -43,7 +44,8 @@ import com.greedygame.scoreoid.FacebookUserCallback;
 import com.greedygame.scoreoid.UserCallBack;
 
 public class FacebookActivity extends Activity {
-
+	
+	private static List<String> PERMISSION = null;	
     private final String PENDING_ACTION_BUNDLE_KEY = "com.facebook.samples.hellofacebook:PendingAction";
 
     private LoginButton loginButton;
@@ -69,7 +71,8 @@ public class FacebookActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+        PERMISSION = new ArrayList<String>();
+        PERMISSION.add("publish_actions");
         thisActivity = this;
         uiHelper = new UiLifecycleHelper(this, callback);
         uiHelper.onCreate(savedInstanceState);
@@ -156,6 +159,9 @@ public class FacebookActivity extends Activity {
             profilePictureView.setProfileId(user.getId());
             greeting.setText(getString(R.string.hello_user, user.getFirstName()));
             
+            // We need to get new permissions, then complete the action when we get called back.
+            session.requestNewPublishPermissions(new Session.NewPermissionsRequest(this, PERMISSION));
+            
             UserCallBack callback = new FacebookUserCallback();
             register(callback);
             
@@ -227,5 +233,7 @@ public class FacebookActivity extends Activity {
         Session session = Session.getActiveSession();
         return session != null && session.getPermissions().contains("publish_actions");
     }
+
+
 
 }

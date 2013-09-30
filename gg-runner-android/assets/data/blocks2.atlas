@@ -5,8 +5,8 @@ repeat: none
 bus
   rotate: false
   xy: 2, 2
-  size: 558, 221
-  orig: 558, 221
+  size: 558, 231
+  orig: 558, 231
   offset: 0, 0
   index: 1
 leader
@@ -54,7 +54,7 @@ pillar
 bus
   rotate: false
   xy: 2, 225
-  size: 558, 221
-  orig: 558, 221
+  size: 558, 231
+  orig: 558, 231
   offset: 0, 0
   index: 0

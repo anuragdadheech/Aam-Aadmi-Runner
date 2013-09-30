@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.VertexAttribute;
 import com.badlogic.gdx.graphics.VertexAttributes.Usage;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -90,6 +89,7 @@ public class LoadingScreen extends AbstractScreen  {
         }
         
         init();
+        game.analyticsEngine.sendView("loadingScreen");
     }
 
 	@Override
@@ -98,7 +98,6 @@ public class LoadingScreen extends AbstractScreen  {
 	    isLoaded = false;
 		Gdx.input.setInputProcessor(null);	      
         Gdx.input.setCatchBackKey(true);
-        game.analyticsEngine.sendView("loadingScreen");
 	}
     
     @Override

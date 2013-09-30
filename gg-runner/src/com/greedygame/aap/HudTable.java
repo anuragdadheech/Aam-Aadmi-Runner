@@ -10,12 +10,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.greedygame.ScoreoidConstants;
 import com.greedygame.aap.actors.CommonMan;
 import com.greedygame.aap.actors.SuperBar;
 import com.greedygame.aap.screens.SelectScreen;
 import com.greedygame.assets.AssetsCommon;
 import com.greedygame.assets.AssetsLevel1;
-import com.greedygame.scoreoid.ScoreoidConstants;
+import com.greedygame.facebook.FacebookInterface;
 
 public class HudTable extends Table {
 	private SuperBar superBar;	
@@ -59,6 +60,7 @@ public class HudTable extends Table {
 			this.celebration = new Image(AssetsLevel1.CELEBRATION);
 			this.celebration.addCaptureListener(new  ClickListener(){
 			     public boolean touchDown(InputEvent event, float x, float y, int pointer, int    button1){
+			    	 RunnerGame.facebook.public_action(FacebookInterface.FB_Action.LEVEL_1_COMPLETE);
 			    	 AssetsCommon.BACKGROUND_MUSIC.pause();
 			    	 game.setScreen(new SelectScreen(game));
 			    	 return false;

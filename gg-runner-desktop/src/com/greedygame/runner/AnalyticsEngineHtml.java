@@ -1,6 +1,5 @@
 package com.greedygame.runner;
 
-
 import com.greedygame.AnalyticsEngine;
 
 public class AnalyticsEngineHtml implements AnalyticsEngine{
@@ -24,7 +23,7 @@ public class AnalyticsEngineHtml implements AnalyticsEngine{
 
 	@Override
 	public void sendView(String name) {
-		// TODO Auto-generated method stub
+		System.out.println("view : "+name);
 		
 	}
 
@@ -37,7 +36,7 @@ public class AnalyticsEngineHtml implements AnalyticsEngine{
 	@Override
 	public void sendEvent(String category, String subCategory, String label,
 			long value) {
-		// TODO Auto-generated method stub
+		System.out.println("event : "+category+"/"+subCategory+"/"+label+"/"+value);
 		
 	}
 

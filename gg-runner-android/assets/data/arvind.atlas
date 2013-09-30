@@ -1,0 +1,172 @@
+arvind.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+roll
+  rotate: false
+  xy: 204, 2
+  size: 200, 163
+  orig: 200, 163
+  offset: 0, 0
+  index: 10
+roll
+  rotate: false
+  xy: 2, 2
+  size: 200, 163
+  orig: 200, 163
+  offset: 0, 0
+  index: 1
+roll
+  rotate: false
+  xy: 406, 167
+  size: 200, 163
+  orig: 200, 163
+  offset: 0, 0
+  index: 5
+roll
+  rotate: false
+  xy: 204, 332
+  size: 200, 163
+  orig: 200, 163
+  offset: 0, 0
+  index: 9
+run
+  rotate: false
+  xy: 690, 332
+  size: 140, 160
+  orig: 140, 160
+  offset: 0, 0
+  index: 11
+run
+  rotate: false
+  xy: 570, 497
+  size: 140, 160
+  orig: 140, 160
+  offset: 0, 0
+  index: 6
+run
+  rotate: false
+  xy: 2, 497
+  size: 140, 160
+  orig: 140, 160
+  offset: 0, 0
+  index: 2
+roll
+  rotate: false
+  xy: 406, 2
+  size: 200, 163
+  orig: 200, 163
+  offset: 0, 0
+  index: 11
+roll
+  rotate: false
+  xy: 204, 167
+  size: 200, 163
+  orig: 200, 163
+  offset: 0, 0
+  index: 4
+roll
+  rotate: false
+  xy: 2, 332
+  size: 200, 163
+  orig: 200, 163
+  offset: 0, 0
+  index: 8
+run
+  rotate: false
+  xy: 712, 497
+  size: 140, 160
+  orig: 140, 160
+  offset: 0, 0
+  index: 7
+run
+  rotate: false
+  xy: 548, 332
+  size: 140, 160
+  orig: 140, 160
+  offset: 0, 0
+  index: 10
+run
+  rotate: false
+  xy: 144, 497
+  size: 140, 160
+  orig: 140, 160
+  offset: 0, 0
+  index: 3
+roll
+  rotate: false
+  xy: 608, 2
+  size: 200, 163
+  orig: 200, 163
+  offset: 0, 0
+  index: 12
+roll
+  rotate: false
+  xy: 2, 167
+  size: 200, 163
+  orig: 200, 163
+  offset: 0, 0
+  index: 3
+roll
+  rotate: false
+  xy: 810, 167
+  size: 200, 163
+  orig: 200, 163
+  offset: 0, 0
+  index: 7
+run
+  rotate: false
+  xy: 854, 497
+  size: 140, 160
+  orig: 140, 160
+  offset: 0, 0
+  index: 8
+run
+  rotate: false
+  xy: 286, 497
+  size: 140, 160
+  orig: 140, 160
+  offset: 0, 0
+  index: 4
+roll
+  rotate: false
+  xy: 810, 2
+  size: 200, 163
+  orig: 200, 163
+  offset: 0, 0
+  index: 2
+roll
+  rotate: false
+  xy: 608, 167
+  size: 200, 163
+  orig: 200, 163
+  offset: 0, 0
+  index: 6
+run
+  rotate: false
+  xy: 2, 659
+  size: 140, 160
+  orig: 140, 160
+  offset: 0, 0
+  index: 9
+run
+  rotate: false
+  xy: 428, 497
+  size: 140, 160
+  orig: 140, 160
+  offset: 0, 0
+  index: 5
+run
+  rotate: false
+  xy: 406, 332
+  size: 140, 160
+  orig: 140, 160
+  offset: 0, 0
+  index: 1
+run
+  rotate: false
+  xy: 832, 332
+  size: 140, 160
+  orig: 140, 160
+  offset: 0, 0
+  index: 12

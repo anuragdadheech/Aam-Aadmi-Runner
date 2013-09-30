@@ -25,7 +25,7 @@ public class InfiniteScrollBg extends Actor {
 	protected float BodyHalfw;
 	protected float BodyHalfh;
 	protected Body body;
-	protected BodyType BodyType;
+	protected BodyType bodyType;
 	public InfiniteScrollBg(RunnerTable table,float x, float y, TextureRegion img) {
 		this.texture = img;
 		this.texture2 = img;

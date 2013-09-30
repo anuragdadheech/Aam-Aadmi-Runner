@@ -36,7 +36,7 @@ public class Platform extends AbstractActor{
 	
 	private void createSolidBody() {		
 		 BodyDef groundBodyDef =new BodyDef();  
-	     groundBodyDef.position.set(new Vector2(0, 130/GameScreen.SCALE - 10));  
+	     groundBodyDef.position.set(new Vector2(0, 100/GameScreen.SCALE - 10));  
 	     body = this.world.createBody(groundBodyDef);  
 	     PolygonShape groundBox = new PolygonShape();  
 	     groundBox.setAsBox(getWidth() * 2, 10.0f);  

@@ -9,19 +9,18 @@ public class Main{
 	
 	static AnalyticsEngine analyticsEngine;
 	static FbInterfaceHtml fbhtml =  new FbInterfaceHtml();
+	static WebViewHtml webviewhtml;
 
 	static ScoreInterfaceHtml scorehtml =  new ScoreInterfaceHtml();
 	public static void main(String[] args) {
 		analyticsEngine = new AnalyticsEngineHtml();
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
-		cfg.title = "swipe-race-tutorial";
+		cfg.title = "Aam Aadmi Runner";
 		cfg.useGL20 = false;
-		
-		/*cfg.width = 480;
-		cfg.height = 320;*/
+
 		cfg.width = 960;
 		cfg.height = 720;
 		
-		new LwjglApplication(new RunnerGame(analyticsEngine, fbhtml, scorehtml), cfg);
+		new LwjglApplication(new RunnerGame(analyticsEngine, fbhtml, scorehtml, webviewhtml), cfg);
 	}
 }

@@ -13,7 +13,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.greedygame.AbstractScreen;
-import com.greedygame.Constant;
+import com.greedygame.ScoreoidConstants;
 import com.greedygame.aap.HudTable;
 import com.greedygame.aap.RunnerGame;
 import com.greedygame.aap.RunnerTable;
@@ -24,7 +24,7 @@ import com.greedygame.dialog.PauseDialog;
 import com.greedygame.dialog.RetryDialog;
 import com.greedygame.dialog.SupportDialog;
 import com.greedygame.dialog.WindowDialogListener;
-import com.greedygame.scoreoid.ScoreoidConstants;
+import com.greedygame.facebook.FacebookInterface;
 
 public class GameScreen extends AbstractScreen implements InputProcessor , GestureListener, WindowDialogListener{
 	
@@ -83,6 +83,8 @@ public class GameScreen extends AbstractScreen implements InputProcessor , Gestu
         pauseDialog = new PauseDialog(this, hudStage);
         
         init();
+
+		game.analyticsEngine.sendView("GameScreen/level"+level);
 	}
 	
 	@Override
@@ -93,8 +95,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor , Gestu
 		
         Gdx.input.setCatchBackKey(true);        
         AssetsCommon.BACKGROUND_MUSIC.play();
-        gameStat = Stat.GAME_READY;
-		game.analyticsEngine.sendView("GameScreen");		
+        gameStat = Stat.GAME_READY;	
 		tryScoreSend = false;
 		
 	}
@@ -195,6 +196,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor , Gestu
 			if((x > Gdx.graphics.getWidth() - AssetsCommon.PAUSE.getRegionWidth()) &&
 					(y < (AssetsCommon.PAUSE.getRegionWidth()+20)) ){
 				this.pause();
+				game.analyticsEngine.sendEvent("pause", "ingameLevel", "press", level);
 			}else{
 				runnerTable.jumpMan();
 			}
@@ -223,7 +225,9 @@ public class GameScreen extends AbstractScreen implements InputProcessor , Gestu
 
 			Gdx.app.log("trySend", stored_score+","+(int)RunnerGame.score.getScore());
 			if((int)RunnerGame.score.getScore()> stored_score){
-				
+				Gdx.app.log("GameScreen", "Your highscore");
+
+				RunnerGame.facebook.public_action(FacebookInterface.FB_Action.HIGH_SCORE);
 				RunnerGame.scoreoid.CreateScore(RunnerGame.score.getUsername(), (long)RunnerGame.score.getScore());
 			}
 			
@@ -267,6 +271,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor , Gestu
 		if(name == "resume"){
 			this.resumeClick();
 			AssetsCommon.BACKGROUND_MUSIC.play();
+			game.analyticsEngine.sendEvent("resume", "inLevel", "resume", level);
 		}else if(name == "retry"){
 			//play_again
 			retryWindow.hide();
@@ -276,11 +281,14 @@ public class GameScreen extends AbstractScreen implements InputProcessor , Gestu
 			tryScoreSend = false;
 			gameStat = Stat.GAME_RUNNING;
 			AssetsCommon.BACKGROUND_MUSIC.play();
+			game.analyticsEngine.sendEvent("retry", "inLevel", "retry", level);
 		}else if(name == "support"){
 			//support
 			retryWindow.hide();
 			pauseDialog.hide();
 			supportWindow.show();
+			RunnerGame.facebook.public_action(FacebookInterface.FB_Action.SUPPORT);
+			game.analyticsEngine.sendEvent("support", "inLevel", "dead", level);
 		}else if(name == "score"){
 			//leaderboard
 	        game.analyticsEngine.sendView("Leaderboard");
@@ -289,14 +297,17 @@ public class GameScreen extends AbstractScreen implements InputProcessor , Gestu
 	        RunnerGame.scoreoid.OpenHighScoresAround(RunnerGame.score);
 		}else if(name == "donate"){
 			//donate
-			Gdx.net.openURI(Constant.LINK_AAP_DONATION);
+			RunnerGame.webView.donate();
+			game.analyticsEngine.sendEvent("donate", "ingameLevel", "donate", level);
 		}else if(name == "vote"){
 			//vote
-			Gdx.net.openURI(Constant.LINK_GG_ENGAGEMENT);
+			RunnerGame.webView.commitToVote();
+			game.analyticsEngine.sendEvent("vote", "ingameLevel", "vote", level);
 		}else if(name == "share"){
 			//share
 			//Gdx.net.openURI(Constant.LINK_FB_SHARE);
 			RunnerGame.facebook.inviteDialog();
+			game.analyticsEngine.sendEvent("invite", "ingameLevel", "invite", level);
 		}
 	}
 
@@ -307,6 +318,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor , Gestu
 		pausedPress = false;
 		trypause = false;
 		gameStat = Stat.GAME_RUNNING;
+		game.analyticsEngine.sendEvent("resume", "ingameLevel", "resume", level);
 	}
 
 	public World getWorld() {		
@@ -328,6 +340,7 @@ public class GameScreen extends AbstractScreen implements InputProcessor , Gestu
 		if(keycode == Keys.ESCAPE || keycode == Keys.BACK){
 			//this.game.setScreen(new MenuScreen(game));
 			this.pause();
+			game.analyticsEngine.sendEvent("pause", "ingameLevel", "back", level);
 		}
 		return false;
 	}

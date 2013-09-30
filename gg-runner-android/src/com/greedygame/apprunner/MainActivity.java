@@ -24,6 +24,7 @@ import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.facebook.FacebookException;
 import com.facebook.FacebookOperationCanceledException;
+import com.facebook.HttpMethod;
 import com.facebook.Request;
 import com.facebook.Response;
 import com.facebook.Session;
@@ -32,17 +33,18 @@ import com.facebook.model.GraphUser;
 import com.facebook.widget.WebDialog;
 import com.facebook.widget.WebDialog.OnCompleteListener;
 import com.greedygame.AnalyticsEngine;
+import com.greedygame.ScoreoidConstants;
+import com.greedygame.WebViewInterface;
 import com.greedygame.aap.Record;
 import com.greedygame.aap.RunnerGame;
 import com.greedygame.apprunner.ScoreoidWebService.AsyncResponse;
 import com.greedygame.facebook.FacebookInterface;
 import com.greedygame.scoreoid.FacebookUserCallback;
 import com.greedygame.scoreoid.ScoreInterface;
-import com.greedygame.scoreoid.ScoreoidConstants;
 import com.greedygame.scoreoid.UserCallBack;
 
 
-public class MainActivity extends AndroidApplication implements ScoreInterface, FacebookInterface, ScoreoidWebService.AsyncResponse {
+public class MainActivity extends AndroidApplication implements WebViewInterface, ScoreInterface, FacebookInterface, ScoreoidWebService.AsyncResponse {
 	
 
 	private AnalyticsEngine analyticsEngine;
@@ -82,10 +84,7 @@ public class MainActivity extends AndroidApplication implements ScoreInterface, 
         AndroidApplicationConfiguration cfg = new AndroidApplicationConfiguration();
         cfg.useGL20 = false;
         
-        initialize(new RunnerGame(analyticsEngine, this, this), cfg);
-        
-
-        
+        initialize(new RunnerGame(analyticsEngine, this, this, this), cfg);
         
     }
        
@@ -107,11 +106,27 @@ public class MainActivity extends AndroidApplication implements ScoreInterface, 
 			});
 		}
 	}
+	
+	@Override
+	public void commitToVote() {
+		// TODO: check internet connection, add toast if not connected
+	    Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
+	    intent.putExtra("mode", "COMMIT_TO_VOTE");
+	    startActivity(intent);
+	}
 
+	@Override
+	public void donate() {
+		// TODO: check internet connection, add toast if not connected
+	    Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
+	    intent.putExtra("mode", "DONATE");
+	    startActivity(intent);		
+	}
 	
     private Session.StatusCallback callback = new Session.StatusCallback() { 
         // callback when session changes state
-        @Override
+        @SuppressWarnings("deprecation")
+		@Override
         public void call(Session session, SessionState state, Exception exception) {
             if (session.isOpened()) {
                 // make request to the /me API
@@ -123,7 +138,6 @@ public class MainActivity extends AndroidApplication implements ScoreInterface, 
                             MainActivity.this.user = user;
                             Toast.makeText(getApplicationContext(), "Welcome "+MainActivity.this.user.getFirstName()+" "+MainActivity.this.user.getLastName(),
         							Toast.LENGTH_SHORT).show();
-                            //setusername(MainActivity.this.user.getUsername()+timeStamp);
                             
                             UserCallBack callback = new FacebookUserCallback();
                             register(callback);
@@ -560,6 +574,43 @@ public class MainActivity extends AndroidApplication implements ScoreInterface, 
             
             }
         });
+	}
+
+	
+
+	@Override
+	public void public_action(FB_Action action) {
+		String url = null;
+		if(action == FB_Action.LEVEL_1) {
+			url = "http://samples.ogp.me/1441903689369051";
+		}else if(action == FB_Action.LEVEL_2) {
+			url = "http://samples.ogp.me/1441903399369080";
+		}else if(action == FB_Action.LEVEL_1_COMPLETE) {
+			url = "http://samples.ogp.me/1443148499244570";
+		}else if(action == FB_Action.START) {
+			
+		}else if(action == FB_Action.SUPPORT) {
+			
+		}else if(action == FB_Action.HIGH_SCORE) {
+			
+		}
+	
+		if (url == null){
+			return;
+		}
+		
+		Bundle params = new Bundle();
+		params.putString("level", url);
+
+		Request request = new Request(
+		    Session.getActiveSession(),
+		    "me/aaprunner:play",
+		    params,
+		    HttpMethod.POST
+		);
+		Response response = request.executeAndWait();
+		// handle the response
+		
 	}
 	
 }

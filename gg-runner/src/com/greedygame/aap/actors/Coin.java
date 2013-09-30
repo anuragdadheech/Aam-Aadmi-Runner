@@ -15,7 +15,6 @@ import com.greedygame.BodyData;
 import com.greedygame.Constant;
 import com.greedygame.aap.RunnerTable;
 import com.greedygame.aap.screens.GameScreen;
-import com.greedygame.assets.AssetsLevel1;
 import com.greedygame.assets.AssetsLevel2;
 
 public class Coin extends AbstractActor {

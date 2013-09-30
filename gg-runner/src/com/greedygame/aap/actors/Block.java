@@ -78,11 +78,11 @@ public class Block extends AbstractActor {
 	
 				this.type = Constant.BODY_POLICE;
 			} else if (type == 2) {
-				this.initialpos.y += 80 / GameScreen.SCALE;
+				this.initialpos.y += 100 / GameScreen.SCALE;
 				this.textureArray = AssetsLevel1.WARING;
 				this.texture = this.textureArray.get(0);	
 				this.margin.x = 20 / GameScreen.SCALE;
-				this.margin.y = 90 / GameScreen.SCALE;
+				this.margin.y = 70 / GameScreen.SCALE;
 				this.margin.width = 90 / (2 * GameScreen.SCALE);
 				this.type = Constant.BODY_WARNING;
 				
@@ -91,13 +91,13 @@ public class Block extends AbstractActor {
 				this.textureArray = AssetsLevel1.WATERGUN;
 				this.texture = this.textureArray.get(0);
 				this.margin.x = -100 / GameScreen.SCALE;
-				this.margin.y = 120/ GameScreen.SCALE;
+				this.margin.y = 100/ GameScreen.SCALE;
 				this.margin.width = 80 / (2 * GameScreen.SCALE);
 				this.type = Constant.BODY_WATERGUN;
 			}			
 		}else if(level==2){
 			if (type == 0) {
-				this.initialpos.y -= 120 / GameScreen.SCALE;
+				this.initialpos.y -= 150 / GameScreen.SCALE;
 				this.textureArray = AssetsLevel2.BUS;
 				this.texture = this.textureArray.get(0);
 				this.margin.x = -10 / GameScreen.SCALE;
@@ -114,15 +114,16 @@ public class Block extends AbstractActor {
 	
 				this.type = Constant.BODY_COURRPT;
 			} else if (type == 2) {
-				this.initialpos.y += 80 / GameScreen.SCALE;
+				this.initialpos.y += 70 / GameScreen.SCALE;
 				this.textureArray = AssetsLevel2.PILLAR;
 				this.texture = this.textureArray.get(0);
-	
+				
+				this.margin.y = -20 / GameScreen.SCALE;
 				this.margin.x = 10 / GameScreen.SCALE;
 				this.margin.width = 40 / (2 * GameScreen.SCALE);
 				this.type = Constant.BODY_WIRE;
 			} else if (type == 3) {
-				this.initialpos.y += 80 / GameScreen.SCALE;
+				this.initialpos.y += 90 / GameScreen.SCALE;
 				this.textureArray = AssetsLevel2.FLYOVER;
 				this.texture = this.textureArray.get(0);
 				this.margin.x = -20 / GameScreen.SCALE;

@@ -1,11 +1,10 @@
 package com.greedygame.aap.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -14,6 +13,8 @@ import com.greedygame.AbstractScreen;
 import com.greedygame.Constant;
 import com.greedygame.aap.RunnerGame;
 import com.greedygame.assets.AssetsCommon;
+
+import com.greedygame.facebook.FacebookInterface;
 
 public class SelectScreen extends AbstractScreen implements InputProcessor {
    
@@ -33,20 +34,22 @@ public class SelectScreen extends AbstractScreen implements InputProcessor {
         ButtonLevel1 = new Image(AssetsCommon.IconLevel1);
        
         stage.addActor(ButtonLevel1);
-
         stage.addActor(ButtonLevel2);
+
+        game.analyticsEngine.sendView("selectLevelScreen");
                 
         ButtonLevel1.addCaptureListener(new  ClickListener(){
-		     public boolean touchDown(InputEvent event, float x, float y, int pointer, int    button1){
+		     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button1){
+		    	 RunnerGame.facebook.public_action(FacebookInterface.FB_Action.LEVEL_1);
 		         game.setScreen(new LoadingScreen(game, Constant.SCREEN_COMIC1));
 		    	 return false;
 		      }
 		});
         
-        System.out.print(RunnerGame.score.getLevel());
         if(RunnerGame.score.getLevel()==1){
 	        ButtonLevel2.addCaptureListener(new  ClickListener(){
 			     public boolean touchDown(InputEvent event, float x, float y, int pointer, int    button1){
+			    	 RunnerGame.facebook.public_action(FacebookInterface.FB_Action.LEVEL_2);
 			    	 game.setScreen(new LoadingScreen(game, Constant.SCREEN_COMIC2));
 			         return false;
 			      }
@@ -66,10 +69,8 @@ public class SelectScreen extends AbstractScreen implements InputProcessor {
 		im.addProcessor(stage);
 		Gdx.input.setInputProcessor(im);	
         Gdx.input.setCatchBackKey(true);
-        game.analyticsEngine.sendView("loadingScreen");
     }
     
-
     @Override
     public void resize(int width, int height) {
 		// Set our screen to always be 960 x XXX in size
@@ -105,12 +106,11 @@ public class SelectScreen extends AbstractScreen implements InputProcessor {
         	keyDown = false;
         }
         
-        if(RunnerGame.score.getLevel() == 1){
-        	if(lock!= null){
-        		lock.remove();
-        	}
+        if(RunnerGame.score.getLevel() == 1 && lock!= null && lock.isVisible()){
+        	lock.remove();
 	        ButtonLevel2.addCaptureListener(new  ClickListener(){
-			     public boolean touchDown(InputEvent event, float x, float y, int pointer, int    button1){
+			     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button1){
+			    	 RunnerGame.facebook.public_action(FacebookInterface.FB_Action.LEVEL_2);
 			    	 game.setScreen(new LoadingScreen(game, Constant.SCREEN_COMIC2));
 			         return false;
 			      }
